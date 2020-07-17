@@ -25,9 +25,9 @@
       file:
         path: "{{ xdg_config_home }}"
         state: "directory"
-    - name: Create nvim setting simbolic link
+    - name: Create .config setting simbolic link
       file:
-        src: "$HOME/dotfiles/.config/nvim"
-        dest: "{{ xdg_config_home }}/nvim"
+        src: "$HOME/dotfiles/.config/*"
+        dest: "{{ xdg_config_home }}/*"
         state: "link"
         force: true
