@@ -1,4 +1,30 @@
 - hosts: localhost
   tasks:
-    - name: Test ansible-playbook
-      debug: msg="Hello world!"
+    - name: Create .bashrc symbolic link
+      file:
+        src: "$HOME/dotfiles/.bashrc"
+        dest: "$HOME/.bashrc"
+        state: "link"
+        force: true
+    - name: Create .bash_logout symbolic link
+      file:
+        src: "$HOME/dotfiles/.bash_logout"
+        dest: "$HOME/.bash_logout"
+        state: "link"
+        force: true
+    - name: Create .profile symbolic link
+      file:
+        src: "$HOME/dotfiles/.profile"
+        dest: "$HOME/.profile"
+        state: "link"
+        force: true
+    - name: Create .config dir if nothing.
+      file:
+        path: "$HOME/.config/"
+        state: "directory"
+    - name: Create nvim setting simbolic link
+      file:
+        src: "$HOME/dotfiles/.config/nvim"
+        dest: "$XDG_CONFIG_HOME/nvim"
+        state: "link"
+        force: true
