@@ -2,6 +2,7 @@
   vars:
     xdg_config_home: "$HOME/.config"
     dotfiles_dir: "$HOME/dotfiles"
+    home: "$HOME"
 
   tasks:
     - name: Install multi packages
@@ -16,12 +17,13 @@
     - name: find home dot settings
       find:
         paths: "{{ dotfiles_dir }}/home/"
+        hidden: true
         file_type: "any"
       register: home_list
     - name: Create home setting simbolic link
       file:
         src: "{{ item.path }}"
-        dest: "{{ xdg_config_home }}/{{ item.path | basename }}"
+        dest: "{{ home }}/{{ item.path | basename }}"
         state: "link"
         force: true
       with_items: "{{ home_list.files }}"
