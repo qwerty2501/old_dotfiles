@@ -1,5 +1,49 @@
 - hosts: localhost
+  become: true
+  vars:
+    xdg_config_home: "$HOME/.config"
+
   tasks:
+    - name: Create .bashrc symbolic link
+      become: false
+      file:
+        src: "$HOME/dotfiles/.bashrc"
+        dest: "$HOME/.bashrc"
+        state: "link"
+        force: true
+    - name: Create .bashrc symbolic link2
+      become: false
+      file:
+        src: "$HOME/dotfiles/.bashrc"
+        dest: "$HOME/.bashrc_bc"
+        state: "link"
+        force: true
+    - name: Create .bash_logout symbolic link
+      become: false
+      file:
+        src: "$HOME/dotfiles/.bash_logout"
+        dest: "$HOME/.bash_logout"
+        state: "link"
+        force: true
+    - name: Create .profile symbolic link
+      become: false
+      file:
+        src: "$HOME/dotfiles/.profile"
+        dest: "$HOME/.profile"
+        state: "link"
+        force: true
+    - name: Create .config dir if nothing.
+      become: false
+      file:
+        path: "{{ xdg_config_home }}"
+        state: "directory"
+    - name: Create .config setting simbolic link
+      become: false
+      file:
+        src: "$HOME/dotfiles/.config/*"
+        dest: "{{ xdg_config_home }}/*"
+        state: "link"
+        force: true
     - name: Install multi packages
       apt:
         name:
