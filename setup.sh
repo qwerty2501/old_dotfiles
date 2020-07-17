@@ -10,4 +10,5 @@ sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt update
 sudo apt install -y ansible
 
-ansible-playbook -i inventory  setup.yaml --ask-become-pass
+ansible-galaxy install robertdebock.cargo
+ansible-playbook setup.yaml --ask-become-pass
