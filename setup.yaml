@@ -1,40 +1,9 @@
 - hosts: localhost
   vars:
     xdg_config_home: "$HOME/.config"
+    dotfiles_dir: "$HOME/dotfiles"
 
   tasks:
-    - name: Create .bashrc symbolic link
-      file:
-        src: "$HOME/dotfiles/.bashrc"
-        dest: "$HOME/.bashrc"
-        state: "link"
-        force: true
-    - name: Create .bashrc symbolic link2
-      file:
-        src: "$HOME/dotfiles/.bashrc"
-        dest: "$HOME/.bashrc_bc"
-        state: "link"
-        force: true
-    - name: Create .bash_logout symbolic link
-      file:
-        src: "$HOME/dotfiles/.bash_logout"
-        dest: "$HOME/.bash_logout"
-        state: "link"
-        force: true
-    - name: Create .profile symbolic link
-      file:
-        src: "$HOME/dotfiles/.profile"
-        dest: "$HOME/.profile"
-        state: "link"
-        force: true
-    - name: Create .config dir if nothing.
-      file:
-        path: "{{ xdg_config_home }}"
-        state: "directory"
-    - name: Create .config setting simbolic link
-      shell: "ln -sf $HOME/dotfiles/.config/* {{ xdg_config_home }}/"
-      args:
-        warn: false
     - name: Install multi packages
       become: true
       apt:
@@ -44,3 +13,34 @@
           - wget
           - pwgen
         update_cache: true
+    - name: find home dot settings
+      find:
+        paths: "{{ dotfiles_dir }}/home/"
+        file_type: "any"
+      register: home_list
+    - name: Create home setting simbolic link
+      file:
+        src: "{{ item.path }}"
+        dest: "{{ xdg_config_home }}/{{ item.path | basename }}"
+        state: "link"
+        force: true
+      with_items: "{{ home_list.files }}"
+    - name: Create .config dir if nothing.
+      file:
+        path: "{{ xdg_config_home }}"
+        state: "directory"
+    - name: find .config settings
+      find:
+        paths: "{{ dotfiles_dir }}/.config/"
+        file_type: "any"
+      register: config_list
+    - name: Create .config setting simbolic link
+      file:
+        src: "{{ item.path }}"
+        dest: "{{ xdg_config_home }}/{{ item.path | basename }}"
+        state: "link"
+        force: true
+      with_items: "{{ config_list.files }}"
+  roles:
+    - role: robertdebock.cargo
+      become: true
