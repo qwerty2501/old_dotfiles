@@ -1,0 +1,33 @@
+- hosts: localhost
+  vars:
+    xdg_config_home: "$HOME/.config"
+
+  tasks:
+    - name: Create .bashrc symbolic link
+      file:
+        src: "$HOME/dotfiles/.bashrc"
+        dest: "$HOME/.bashrc"
+        state: "link"
+        force: true
+    - name: Create .bash_logout symbolic link
+      file:
+        src: "$HOME/dotfiles/.bash_logout"
+        dest: "$HOME/.bash_logout"
+        state: "link"
+        force: true
+    - name: Create .profile symbolic link
+      file:
+        src: "$HOME/dotfiles/.profile"
+        dest: "$HOME/.profile"
+        state: "link"
+        force: true
+    - name: Create .config dir if nothing.
+      file:
+        path: "{{ xdg_config_home }}"
+        state: "directory"
+    - name: Create nvim setting simbolic link
+      file:
+        src: "$HOME/dotfiles/.config/nvim"
+        dest: "{{ xdg_config_home }}/nvim"
+        state: "link"
+        force: true
