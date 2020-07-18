@@ -11,4 +11,4 @@ sudo apt update
 sudo apt install -y ansible
 
 ansible-galaxy install robertdebock.cargo
-ansible-playbook setup.yaml --ask-become-pass
+ansible-playbook ansible/setup.yaml --ask-become-pass
