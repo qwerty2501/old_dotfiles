@@ -37,3 +37,16 @@
     - goenv
     - nodenv
     - pyenv
+
+- stat:
+    path: "{{ home }}/google-cloud-sdk/"
+  register: has_google_cloud_sdk
+- name: Install google cloud sdk
+  shell: "curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-{{ version }}-linux-x86_64.tar.gz | tar zx -C {{ home }}"
+  vars:
+    version: 298.0.0
+  when: has_google_cloud_sdk.stat.exists == false
+
+- name: Update google cloud sdk
+  shell: "gcloud components update --quiet"
+  when: has_google_cloud_sdk.stat.exists == false
