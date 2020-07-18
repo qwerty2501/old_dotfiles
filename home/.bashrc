@@ -119,8 +119,6 @@ fi
 
 
 eval "$(direnv hook bash)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 #SESSION_NAME=ope
 #
 #if [[ -z "$TMUX" && -z "$STY" ]] && type tmux >/dev/null 2>&1; then
@@ -133,23 +131,16 @@ eval "$(pyenv virtualenv-init -)"
 #  tmux $option && exit
 #fi
 
-export PATH=$HOME/bin:$PATH
+
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$GOPATH/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/google-cloud-sdk/path.bash.inc' ]; then source '$HOME/google-cloud-sdk/path.bash.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/google-cloud-sdk/completion.bash.inc' ]; then source '$HOME/google-cloud-sdk/completion.bash.inc'; fi
-export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
