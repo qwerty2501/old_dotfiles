@@ -115,8 +115,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-
+source $HOME/.git-prompt.sh
+export PS1='\[\e[1;92m\]\u\[\e[0m\]:\[\e[1;94m\]\w\n\[\e[1;93m$(__git_ps1 "(%s)")\]\[\e[0m\]$'
 
 eval "$(direnv hook bash)"
 #SESSION_NAME=ope
