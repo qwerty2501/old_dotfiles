@@ -1,0 +1,19 @@
+- name: Install npm packages
+  become: true
+  npm:
+    name: "{{ item }}"
+    global: true
+    state: latest
+  with_items:
+    - npm
+    - n
+    - typescript
+- name: Install cargo tools
+  become: false
+  shell: "cargo install {{ item }}"
+  with_items:
+    - wasm-pack
+    - wasm-bindgen-cli
+    - wasm-snip
+    - cargo-generate
+    - cargo-atcoder

@@ -5,9 +5,13 @@
     home: "$HOME"
 
   tasks:
-    - name: install tools
-      include_tasks: tasks/install.yaml
-    - name: home
+    - name: Install ubuntu tools
+      include_tasks: tasks/install/ubuntu.yaml
+      when:
+        - ansible_distribution == "Ubuntu"
+    - name: Install general tools
+      include_tasks: tasks/install/general.yaml
+    - name: Home
       include_tasks: tasks/home.yaml
   roles:
     - role: robertdebock.cargo

@@ -1,0 +1,38 @@
+- name: Install apt packages
+  become: true
+  apt:
+    name:
+      - neovim
+      - git
+      - wget
+      - pwgen
+      - libssl1.0-dev
+      - nodejs
+      - npm
+    update_cache: true
+
+- stat:
+    path: "{{ home }}/.anyenv"
+  register: anyenv_is_installed
+- name: Install anyenv
+  become: false
+  shell: "git clone https://github.com/riywo/anyenv {{ home }}/.anyenv"
+  when: anyenv_is_installed.stat.exists == false
+
+- stat:
+    path: "{{ xdg_config_home }}/anyenv/anyenv-install"
+  register: has_anyenv_install
+
+- name: Init anyenv
+  become: false
+  shell: "{{ home }}/.anyenv/bin/anyenv install --force-init"
+  when: has_anyenv_install.stat.exists == false
+
+- name: Install envs
+  become: false
+  shell: "{{ home }}/.anyenv/bin/anyenv install -f {{ item }}"
+  when: has_anyenv_install.stat.exists == false
+  with_items:
+    - goenv
+    - nodenv
+    - pyenv
