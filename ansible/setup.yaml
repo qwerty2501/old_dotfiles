@@ -5,8 +5,12 @@
     home: "$HOME"
 
   tasks:
-    - name: Install ubuntu tools
-      include_tasks: tasks/install/ubuntu.yaml
+    - name: For Ubuntu
+      block:
+        - name: Setting environment Ubuntu
+          include_tasks: tasks/environment/ubuntu.yaml
+        - name: Install Ubuntu tools
+          include_tasks: tasks/install/ubuntu.yaml
       when:
         - ansible_distribution == "Ubuntu"
     - name: Install general tools

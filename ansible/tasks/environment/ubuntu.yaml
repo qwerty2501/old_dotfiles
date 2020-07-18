@@ -1,0 +1,7 @@
+- name: Set locale
+  become: false
+  shell: localectl set-locale LANG=ja_JP.UTF-8
+- name: Change English Dir
+  become: false
+  ignore_errors: true
+  shell: LANG=C xdg-user-dirs-gtk-update
