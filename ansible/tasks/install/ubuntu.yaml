@@ -73,6 +73,8 @@
   vars:
     packages:
       - golang.org/x/tools/gopls@latest
+  environment:
+    GO111MODULE: "on"
 
 - stat:
     path: "{{ home }}/google-cloud-sdk/"
