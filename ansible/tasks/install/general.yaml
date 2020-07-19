@@ -8,12 +8,14 @@
     - npm
     - n
     - typescript
+    - typescript-language-server
 - name: Install cargo tools
   become: false
-  shell: "cargo install {{ item }}"
-  with_items:
-    - wasm-pack
-    - wasm-bindgen-cli
-    - wasm-snip
-    - cargo-generate
-    - cargo-atcoder
+  shell: "cargo install {{ crates | join(' ') }}"
+  vars:
+    crates:
+      - wasm-pack
+      - wasm-bindgen-cli
+      - wasm-snip
+      - cargo-generate
+      - cargo-atcoder
