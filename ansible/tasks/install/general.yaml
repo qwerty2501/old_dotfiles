@@ -13,6 +13,14 @@
     - vscode-css-languageserver-bin
     - vscode-json-languageserver
 
+- name: Install rustup stable
+  become: false
+  shell: "rustup install stable"
+
+- name: Install rustup default stable
+  become: false
+  shell: "rustup default stable"
+
 - name: Install latest rustup
   become: false
   shell: "rustup update"
