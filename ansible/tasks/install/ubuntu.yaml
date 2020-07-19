@@ -32,6 +32,7 @@
 - stat:
     path: "{{ home }}/.anyenv"
   register: anyenv_is_installed
+
 - name: Install anyenv
   become: false
   shell: "git clone https://github.com/riywo/anyenv {{ home }}/.anyenv"
@@ -43,12 +44,12 @@
 
 - name: Init anyenv
   become: false
-  shell: "{{ home }}/.anyenv/bin/anyenv install --force-init"
+  shell: /bin/bash -lc "source {{ home }}/.profile && anyenv install --force-init"
   when: has_anyenv_install.stat.exists == false
 
 - name: Install envs
   become: false
-  shell: "{{ home }}/.anyenv/bin/anyenv install -f {{ item }}"
+  shell: /bin/bash -lc "source {{ home }}/.profile && anyenv install -f {{ item }}"
   when: has_anyenv_install.stat.exists == false
   with_items:
     - goenv
@@ -61,7 +62,7 @@
 
 - name: Install go
   become: false
-  shell: "{{ home }}/.anyenv/envs/goenv/bin/goenv install {{ version }} && {{ home }}/.anyenv/envs/goenv/bin/goenv global {{ version }}"
+  shell: /bin/bash -lc "source {{ home }}/.profile && goenv install {{ version }} && goenv global {{ version }}"
   vars:
     version: 1.14.6
   when: installed_go.stat.exists == false

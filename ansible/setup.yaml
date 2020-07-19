@@ -5,6 +5,8 @@
     home: "$HOME"
 
   tasks:
+    - name: Setting Home
+      include_tasks: tasks/home.yaml
     - name: For Ubuntu
       block:
         - name: Setting environment Ubuntu
@@ -15,8 +17,6 @@
         - ansible_distribution == "Ubuntu"
     - name: Install general tools
       include_tasks: tasks/install/general.yaml
-    - name: Home
-      include_tasks: tasks/home.yaml
   roles:
     - role: robertdebock.cargo
       become: true
