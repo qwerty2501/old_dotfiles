@@ -27,7 +27,7 @@
           link: "/usr/bin/clangd"
           path: "/usr/bin/clangd-{{ clang_version }}"
   vars:
-    clang_version: 11
+    clang_version: 10
 
 - stat:
     path: "{{ home }}/.anyenv"
