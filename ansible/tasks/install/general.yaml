@@ -45,6 +45,11 @@
     path: "{{ home }}/.local/bin/rust-analyzer"
   register: installed_rust_analyzer
 
+- name: Create .local/bin dir if nothing.
+  file:
+    path: "{{ home }}/.local/bin"
+    state: "directory"
+
 - name: Install rust-analyzer
   become: false
   shell: "curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o {{ home }}/.local/bin/rust-analyzer && chmod +x {{ home }}/.local/bin/rust-analyzer"
