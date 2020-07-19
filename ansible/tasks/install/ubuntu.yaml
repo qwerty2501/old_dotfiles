@@ -9,7 +9,6 @@
           - wget
           - curl
           - pwgen
-          - libssl1.0-dev
           - nodejs
           - npm
           - direnv
