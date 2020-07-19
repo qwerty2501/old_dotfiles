@@ -15,18 +15,18 @@
 
 - name: Install rustup stable
   become: false
-  shell: "rustup install stable"
+  shell: /bin/bash -lc "source {{ home }}/.profile && rustup install stable"
 
 - name: Install rustup default stable
   become: false
-  shell: "rustup default stable"
+  shell: /bin/bash -lc "source {{ home }}/.profile && rustup default stable"
 
 - name: Install latest rustup
   become: false
-  shell: "rustup update"
+  shell: /bin/bash -lc "source {{ home }}/.profile && rustup update"
 - name: Install cargo tools
   become: false
-  shell: "cargo install {{ crates | join(' ') }}"
+  shell: /bin/bash -lc "source {{ home }}/.profile && cargo install {{ crates | join(' ') }}"
   vars:
     crates:
       - wasm-pack
@@ -36,7 +36,7 @@
       - cargo-atcoder
 - name: Install rustup components
   become: false
-  shell: "rustup component add {{ components | join(' ') }}"
+  shell: /bin/bash -lc "source {{ home }}/.profile && rustup component add {{ components | join(' ') }}"
   vars:
     components:
       - rust-src
