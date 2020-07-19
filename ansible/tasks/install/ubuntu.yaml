@@ -1,16 +1,33 @@
-- name: Install apt packages
-  become: true
-  apt:
-    name:
-      - neovim
-      - git
-      - wget
-      - pwgen
-      - libssl1.0-dev
-      - nodejs
-      - npm
-      - direnv
-    update_cache: true
+- name: Setting apt
+  block:
+    - name: Install apt packages
+      become: true
+      apt:
+        name:
+          - neovim
+          - git
+          - wget
+          - pwgen
+          - libssl1.0-dev
+          - nodejs
+          - npm
+          - direnv
+          - clang-{{ clang_version }}
+          - clang-tools-{{ clang_version }}
+          - clangd-{{ clang_version }}
+        update_cache: true
+    - name: alternatives
+      become: true
+      shell: "update-alternatives --install {{ item.link }} {{ item.name }} {{ item.path }} 50"
+      with_items:
+        - name: "clang"
+          link: "/usr/bin/clang"
+          path: "/usr/bin/clang-{{ clang_version }}"
+        - name: "clangd"
+          link: "/usr/bin/clangd"
+          path: "/usr/bin/clangd-{{ clang_version }}"
+  vars:
+    clang_version: 11
 
 - stat:
     path: "{{ home }}/.anyenv"
@@ -37,6 +54,24 @@
     - goenv
     - nodenv
     - pyenv
+
+- stat:
+    path: "{{ home }}/.anyenv/envs/goenv/shims/go"
+  register: installed_go
+
+- name: Install go
+  become: false
+  shell: "{{ home }}/.anyenv/envs/goenv/bin/goenv install {{ version }} && {{ home }}/.anyenv/envs/goenv/bin/goenv global {{ version }}"
+  vars:
+    version: 1.14.6
+  when: installed_go.stat.exists == false
+
+- name: Install go tools without -u
+  become: false
+  shell: "{{ home }}/.anyenv/envs/goenv/shims/go get {{ packages | join(' ') }}"
+  vars:
+    packages:
+      - golang.org/x/tools/gopls@latest
 
 - stat:
     path: "{{ home }}/google-cloud-sdk/"
