@@ -86,5 +86,5 @@
   when: has_google_cloud_sdk.stat.exists == false
 
 - name: Update google cloud sdk
-  shell: /bin/bash -lc "source {{ home }}/.bashrc && gcloud components update --quiet"
+  shell: "{{ home }}/google-cloud-sdk/bin/gcloud components update --quiet"
   when: has_google_cloud_sdk.stat.exists == false
