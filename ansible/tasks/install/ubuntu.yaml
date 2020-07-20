@@ -1,9 +1,3 @@
-- name: Install pip packages.
-  pip:
-    name: "{{ item }}"
-  loop:
-    - pynvim
-
 - name: Setting apt
   block:
     - name: Install apt packages
@@ -24,6 +18,7 @@
         - clang-tools-{{ clang_version }}
         - clangd-{{ clang_version }}
         - chromium-browser
+        - python3-pip
 
     - name: alternatives
       become: true
@@ -37,6 +32,12 @@
           path: "/usr/bin/clangd-{{ clang_version }}"
   vars:
     clang_version: 10
+
+- name: Install pip packages.
+  pip:
+    name: "{{ item }}"
+  loop:
+    - pynvim
 
 - stat:
     path: "{{ home }}/.anyenv"
