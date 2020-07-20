@@ -1,22 +1,30 @@
+- name: Install pip packages.
+  pip:
+    name: "{{ item }}"
+  loop:
+    - pynvim
+
 - name: Setting apt
   block:
     - name: Install apt packages
       become: true
       apt:
-        name:
-          - neovim
-          - git
-          - wget
-          - curl
-          - pwgen
-          - nodejs
-          - npm
-          - direnv
-          - clang-{{ clang_version }}
-          - clang-tools-{{ clang_version }}
-          - clangd-{{ clang_version }}
-          - chromium-browser
+        name: "{{ item }}"
         update_cache: true
+      loop:
+        - neovim
+        - git
+        - wget
+        - curl
+        - pwgen
+        - nodejs
+        - npm
+        - direnv
+        - clang-{{ clang_version }}
+        - clang-tools-{{ clang_version }}
+        - clangd-{{ clang_version }}
+        - chromium-browser
+
     - name: alternatives
       become: true
       shell: "update-alternatives --install {{ item.link }} {{ item.name }} {{ item.path }} 50"

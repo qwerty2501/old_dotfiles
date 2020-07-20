@@ -1,7 +1,7 @@
 - name: install language-pack-ja
   become: true
   apt: name={{ item }} update_cache=yes
-  with_items:
+  loop:
     - language-pack-ja
 
 - name: create locale ja_JP.UTF-8
