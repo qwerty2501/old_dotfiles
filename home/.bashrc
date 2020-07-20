@@ -131,7 +131,9 @@ eval "$(direnv hook bash)"
 #  tmux $option && exit
 #fi
 
-
+eval "$(anyenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
