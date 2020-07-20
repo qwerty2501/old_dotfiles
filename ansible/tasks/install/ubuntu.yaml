@@ -36,7 +36,9 @@
 - name: Install pip packages.
   pip:
     name: "{{ item }}"
+    state: latest
   loop:
+    - msgpack
     - pynvim
 
 - stat:
