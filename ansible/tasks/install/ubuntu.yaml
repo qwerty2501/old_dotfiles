@@ -15,6 +15,7 @@
           - clang-{{ clang_version }}
           - clang-tools-{{ clang_version }}
           - clangd-{{ clang_version }}
+          - chromium-browser
         update_cache: true
     - name: alternatives
       become: true
