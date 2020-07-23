@@ -46,9 +46,9 @@
   register: anyenv_is_installed
 
 - name: Install anyenv
-  become: false
-  shell: "git clone https://github.com/riywo/anyenv {{ home }}/.anyenv"
-  when: anyenv_is_installed.stat.exists == false
+  git:
+    repo: "https://github.com/riywo/anyenv"
+    dest: "{{ home }}/.anyenv"
 
 - stat:
     path: "{{ xdg_config_home }}/anyenv/anyenv-install"
