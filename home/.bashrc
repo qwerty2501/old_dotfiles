@@ -1,3 +1,8 @@
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 eval "$(direnv hook bash)"
 export OSH=$HOME/.oh-my-bash
 OSH_THEME="brainy"
