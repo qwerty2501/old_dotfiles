@@ -54,3 +54,8 @@
   become: false
   shell: "curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o {{ home }}/.local/bin/rust-analyzer && chmod +x {{ home }}/.local/bin/rust-analyzer"
   when: installed_rust_analyzer.stat.exists == false
+
+- name: Install oh-my-bash
+  git:
+    repo: "https://github.com/ohmybash/oh-my-bash.git"
+    dest: "{{ home }}/.oh-my-bash"
