@@ -48,8 +48,6 @@
         name: docker-ce
         state: present
         update_cache: true
-      notify:
-        - restart docker
 
     - name: alternatives
       become: true
@@ -63,6 +61,15 @@
           path: "/usr/bin/clangd-{{ clang_version }}"
   vars:
     clang_version: 10
+
+- name: Ensure group "docker"
+  group:
+    name: docker
+    state: present
+
+- name: Add the current user to docker
+  become: true
+  shell: usermod -aG docker $USER
 
 - name: Install pip packages.
   pip:
