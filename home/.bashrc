@@ -3,7 +3,7 @@ case $- in
       *) return;;
 esac
 
-eval "$(direnv hook bash)"
+
 export OSH=$HOME/.oh-my-bash
 OSH_THEME="brainy"
 completions=(
@@ -22,7 +22,7 @@ plugins=(
   bashmarks
 )
 source $OSH/oh-my-bash.sh
-
+eval "$(direnv hook bash)"
 eval "$(anyenv init -)"
 export PATH="$GOROOT/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
