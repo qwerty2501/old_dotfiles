@@ -19,6 +19,37 @@
         - clangd-{{ clang_version }}
         - chromium-browser
         - python3-pip
+        - apt-transport-https
+        - ca-certificates
+        - gnupg-agent
+        - software-properties-common
+
+    - name: Add docker apt-key
+      become: true
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: define lsb_release -cs
+      shell: lsb_release -cs
+      ignore_errors: true
+      register: lsb_release
+
+    - name: add apt repository docker
+      become: true
+      apt_repository:
+        update_cache: true
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable"
+        state: present
+
+    - name: Install docker-ce.
+      become: true
+      apt:
+        name: docker-ce
+        state: present
+        update_cache: true
+      notify:
+        - restart docker
 
     - name: alternatives
       become: true
