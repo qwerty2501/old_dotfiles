@@ -27,6 +27,9 @@
         - ffmpeg
         - fzf
         - jq
+        - qemu-kvm
+        - libvirt0
+        - libvirt-bin
 
     - name: Add docker apt-key
       become: true
@@ -71,9 +74,12 @@
     name: docker
     state: present
 
-- name: Add the current user to docker
+- name: Add the current user to groups
   become: true
-  shell: usermod -aG docker $USER
+  shell: usermod -aG {{ item }} $USER
+  with_items:
+    - docker
+    - libvirt
 
 - name: Install pip packages.
   pip:
