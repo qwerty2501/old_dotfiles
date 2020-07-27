@@ -1,5 +1,4 @@
 
-eval "$(goenv init -)"
 
 case $- in
     *i*) ;;
@@ -24,6 +23,7 @@ plugins=(
   git
   bashmarks
 )
+
 source $OSH/oh-my-bash.sh
 eval "$(direnv hook bash)"
 

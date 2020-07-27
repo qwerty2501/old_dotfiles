@@ -7,7 +7,6 @@
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
-
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -36,9 +35,8 @@ export GO111MODULE=on
 # Ubuntu make installation of Ubuntu Make binary symlink
 PATH=$HOME/.anyenv/bin:$HOME/.local/share/umake/bin:/usr/local/go/bin:/usr/local/gradle/bin:$HOME/.pyenv/bin:/usr/local/gatling/bin:$PATH
 eval "$(anyenv init -)"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
 
+PATH="$GOROOT/bin:$PATH:$GOPATH/bin"
 export WINEARCH=win32
 
 export PATH="$HOME/.cargo/bin:$PATH"
