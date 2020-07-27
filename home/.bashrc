@@ -1,3 +1,6 @@
+
+eval "$(goenv init -)"
+
 case $- in
     *i*) ;;
       *) return;;
@@ -23,9 +26,6 @@ plugins=(
 )
 source $OSH/oh-my-bash.sh
 eval "$(direnv hook bash)"
-eval "$(anyenv init -)"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
