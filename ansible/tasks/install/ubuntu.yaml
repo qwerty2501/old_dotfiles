@@ -76,7 +76,6 @@
   shell: usermod -aG {{ item }} $USER
   with_items:
     - docker
-    - libvirt
 
 - name: Install pip packages.
   pip:
