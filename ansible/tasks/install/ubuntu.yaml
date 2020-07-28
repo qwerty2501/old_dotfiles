@@ -30,6 +30,7 @@
         - qemu-kvm
         - libvirt0
         - libvirt-bin
+        - virt-manager
 
     - name: Add docker apt-key
       become: true
