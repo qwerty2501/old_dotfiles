@@ -27,6 +27,8 @@
         - ffmpeg
         - fzf
         - jq
+        - docker-compose
+        - xvkbd
 
     - name: Add docker apt-key
       become: true
