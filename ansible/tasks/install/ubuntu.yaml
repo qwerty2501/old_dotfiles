@@ -79,6 +79,11 @@
   with_items:
     - docker
 
+- name: Change group docker.socket
+  file:
+    path: /var/run/docker.sock
+    group: docker
+
 - name: Install pip packages.
   pip:
     name: "{{ item }}"
