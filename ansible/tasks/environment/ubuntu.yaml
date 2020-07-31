@@ -21,3 +21,7 @@
   become: false
   ignore_errors: true
   shell: LANG=C xdg-user-dirs-gtk-update
+
+- name: Change Capslock
+  become: true
+  shell: gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
