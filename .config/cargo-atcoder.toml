@@ -117,7 +117,7 @@ fn main() {
     solve(&stdin!(), &mut out);
 }
 fn solve<W: std::io::Write>(src: &str, out: &mut W) {
-    macro_rules! stdout {
+    macro_rules! out {
         ($fmt:expr) => {{
             let _ = out.write_fmt(format_args!($fmt));
         }};
@@ -125,20 +125,18 @@ fn solve<W: std::io::Write>(src: &str, out: &mut W) {
             let _ = out.write_fmt(format_args!($fmt, $($args)*));
         }};
     }
-    macro_rules! stdoutln {
+    macro_rules! outln {
         ($fmt:expr) => {{
-            stdout!($fmt);
-            let _ = out.write(&['\n' as u8]);
+            out!(concat!($fmt,"\n"));
         }};
         ($fmt:expr, $($args:tt)*) => {{
-            stdout!($fmt, $($args)*);
-            let _ = out.write(&['\n' as u8]);
+            out!(concat!($fmt, "\n"), $($args)*);
         }};
     }
     input! {
         source = src,
-        s:str,
     }
 }
-test! {}
+test! {
+}
 """
