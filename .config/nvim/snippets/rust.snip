@@ -2384,9 +2384,7 @@ snippet attest
                     assert_eq!(solve($input), $output);
                 )*
             }
-        };
-    }
-
+        }; } 
 snippet atcoder
   #[allow(unused_imports)]
   use std::cmp::*;
@@ -2402,13 +2400,19 @@ snippet atcoder
           #[test]
           fn solve_test() {
               $(
-                  assert_eq!(solve($input), $output);
+                  {
+                      let mut out = Vec::<u8>::new();
+                      solve($input,&mut out);
+                      let out_str =str::from_utf8(&out).unwrap();
+                      assert_eq!(&out_str, &$output);
+                  }
               )*
           }
       };
   }
   macro_rules! input {
       (source = $s:expr, $($r:tt)*) => {
+          #[allow(unused_mut)]
           let mut iter = $s.split_whitespace();
           input_inner!{iter, $($r)*}
       };
@@ -2451,7 +2455,11 @@ snippet atcoder
           read_value!($iter, usize) - 1
       };
 
-      ($iter:expr, $t:ty) => {
+      ($iter:expr,str) => {
+          $iter.next().unwrap()
+      };
+
+      ($iter:expr, $t:tt) => {
           $iter.next().unwrap().parse::<$t>().expect("Parse error")
       };
   }
@@ -2466,21 +2474,30 @@ snippet atcoder
   }
 
   fn main() {
-      println!("{}", solve(&stdin!()));
+      let mut out = std::io::stdout();
+
+      solve(&stdin!(), &mut out);
   }
-  fn solve(src: &str) -> String {
+  fn solve<W: std::io::Write>(src: &str, out: &mut W) {
+      macro_rules! out {
+          ($fmt:expr) => {{
+              let _ = out.write_fmt(format_args!($fmt));
+          }};
+          ($fmt:expr, $($args:tt)*) => {{
+              let _ = out.write_fmt(format_args!($fmt, $($args)*));
+          }};
+      }
+      macro_rules! outln {
+          ($fmt:expr) => {{
+              out!(concat!($fmt,"\n"));
+          }};
+          ($fmt:expr, $($args:tt)*) => {{
+              out!(concat!($fmt, "\n"), $($args)*);
+          }};
+      }
       input! {
           source = src,
-          s:String,
-      }
-      if let Ok(num) = s.parse::<i32>() {
-          (num * 2).to_string()
-      } else {
-          "error".to_string()
       }
   }
   test! {
-      "678" => "1356",
-      "abc" => "error",
-      "0x8" => "error"
   }
