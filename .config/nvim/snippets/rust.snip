@@ -2478,7 +2478,10 @@ snippet atcoder
 
       solve(&stdin!(), &mut out);
   }
+
+  #[allow(unused_mut)]
   fn solve<W: std::io::Write>(src: &str, out: &mut W) {
+      #[allow(unused_macros)]
       macro_rules! out {
           ($fmt:expr) => {{
               let _ = out.write_fmt(format_args!($fmt));
@@ -2487,6 +2490,7 @@ snippet atcoder
               let _ = out.write_fmt(format_args!($fmt, $($args)*));
           }};
       }
+      #[allow(unused_macros)]
       macro_rules! outln {
           ($fmt:expr) => {{
               out!(concat!($fmt,"\n"));
@@ -2495,6 +2499,7 @@ snippet atcoder
               out!(concat!($fmt, "\n"), $($args)*);
           }};
       }
+
       input! {
           source = src,
       }
