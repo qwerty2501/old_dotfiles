@@ -3,6 +3,8 @@
   apt: name={{ item }} update_cache=yes
   loop:
     - language-pack-ja
+    - manpages-ja
+    - manpages-ja-dev
 
 - name: create locale ja_JP.UTF-8
   become: true

@@ -30,7 +30,6 @@
         - docker-compose
         - xvkbd
         - keepassxc
-        - manpages-ja manpages-ja-dev
 
     - name: Add docker apt-key
       become: true
