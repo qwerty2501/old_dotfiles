@@ -29,6 +29,7 @@
         - jq
         - docker-compose
         - xvkbd
+        - keepassxc
 
     - name: Add docker apt-key
       become: true
