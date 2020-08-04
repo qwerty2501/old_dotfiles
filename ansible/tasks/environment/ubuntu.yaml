@@ -13,7 +13,7 @@
 
 - name: Set locale
   become: false
-  shell: localectl set-locale LANG=ja_JP.UTF-8
+  shell: localectl set-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
 
 - name: set timezone to Asia/Tokyo
   timezone:
