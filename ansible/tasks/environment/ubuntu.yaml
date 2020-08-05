@@ -26,4 +26,4 @@
 
 - name: Change Capslock
   become: true
-  shell: gsettings set org.gnome.desktop.input-sources xkb-options "['caps:escape']"
+  shell: gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
