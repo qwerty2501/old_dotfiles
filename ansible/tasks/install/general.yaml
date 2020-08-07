@@ -34,6 +34,14 @@
       - wasm-snip
       - cargo-generate
       - cargo-atcoder
+      - fd-find
+      - sd
+      - ripgrep
+      - exa
+      - bat
+      - hexyl
+      - procs
+
 - name: Install rustup components
   become: false
   shell: /bin/bash -lc "source {{ home }}/.profile && rustup component add {{ components | join(' ') }}"
