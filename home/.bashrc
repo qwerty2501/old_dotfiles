@@ -35,9 +35,3 @@ if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-clo
 
 if [ -f "$HOME/.Xmodmap" ]; then xmodmap $HOME/.Xmodmap; fi
 
-alias ls='exa'
-alias cat='bat'
-alias od='hexyl'
-alias find='fd'
-alias ps='procs'
-alias grep='rg'
