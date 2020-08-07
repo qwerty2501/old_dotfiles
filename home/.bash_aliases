@@ -1,3 +1,4 @@
+shopt -s expand_aliases
 
 alias ls='exa'
 alias cat='bat'
