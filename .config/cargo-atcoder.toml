@@ -92,7 +92,9 @@ macro_rules! read_value {
     ($iter:expr, usize1) => {
         read_value!($iter, usize) - 1
     };
-
+    ($iter:expr, isize1) => {
+        read_value!($iter, isize) - 1
+    };
     ($iter:expr,str) => {
         $iter.next().unwrap()
     };
@@ -111,6 +113,15 @@ macro_rules! stdin {
     }};
 }
 
+#[allow(dead_code)]
+fn to_yesno(yesno: bool) -> &'static str {
+    if yesno {
+        "Yes"
+    } else {
+        "No"
+    }
+}
+
 fn main() {
     let mut out = std::io::stdout();
 
@@ -121,8 +132,8 @@ fn main() {
 fn solve<W: std::io::Write>(src: &str, out: &mut W) {
     #[allow(unused_macros)]
     macro_rules! out {
-        ($fmt:expr) => {{
-            let _ = out.write_fmt(format_args!($fmt));
+        ($arg:expr) => {{
+            let _ = out.write_fmt(format_args!("{}",$arg));
         }};
         ($fmt:expr, $($args:tt)*) => {{
             let _ = out.write_fmt(format_args!($fmt, $($args)*));
@@ -130,11 +141,11 @@ fn solve<W: std::io::Write>(src: &str, out: &mut W) {
     }
     #[allow(unused_macros)]
     macro_rules! outln {
-        ($fmt:expr) => {{
-            out!(concat!($fmt,"\n"));
+        ($arg:expr) => {{
+            out!("{}\\n",$arg);
         }};
         ($fmt:expr, $($args:tt)*) => {{
-            out!(concat!($fmt, "\n"), $($args)*);
+            out!(concat!($fmt, "\\n"), $($args)*);
         }};
     }
 
