@@ -14,16 +14,10 @@ repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'prabirshrestha/async.vim'
 
-[[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-rev = 'next'
-build = 'bash install.sh'
 
 [[plugins]]
 repo = 'junegunn/fzf'
 
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
 
 
 [[plugins]]
@@ -98,3 +92,6 @@ repo = 'previm/previm'
 
 [[plugins]]
 repo = 'mattn/vim-sqlfmt'
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
