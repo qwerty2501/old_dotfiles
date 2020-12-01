@@ -69,3 +69,15 @@
   git:
     repo: "https://github.com/ohmybash/oh-my-bash.git"
     dest: "{{ home }}/.oh-my-bash"
+
+- stat:
+    path: "{{ home }}/dotfiles/nerd-fonts"
+  register: has_nerd_fonts
+
+- name: clone nerd-fonts
+  shell: git clone https://github.com/ryanoasis/nerd-fonts.git
+  when: has_nerd_fonts.stat.exists == false
+
+- name: install nerd-fonts
+  shell: nerd-fonts/install.sh
+  when: has_nerd_fonts.stat.exists == false
