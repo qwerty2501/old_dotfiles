@@ -37,3 +37,9 @@ if [ -f "$HOME/.Xmodmap" ]; then xmodmap $HOME/.Xmodmap; fi
 if [ -f "$HOME/.bash_aliases" ]; then
     . "$HOME/.bash_aliases"
 fi
+# BEGIN ANSIBLE MANAGED BLOCK: asdf
+if [ -e "$HOME/.asdf/asdf.sh" ]; then
+  source $HOME/.asdf/asdf.sh
+  source $HOME/.asdf/completions/asdf.bash
+fi
+# END ANSIBLE MANAGED BLOCK: asdf
