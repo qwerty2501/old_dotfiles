@@ -6,7 +6,6 @@
   npm:
     name: "{{ item }}"
     global: true
-    state: latest
   loop: "{{ npm.install_apps }}"
 
 - name: Install rustup stable
@@ -30,7 +29,8 @@
   shell: /bin/bash -lc "source {{ home }}/.profile && rustup component add {{ item }}"
   loop: "{{ rust.install_rustup_components }}"
 
-- stat:
+- name: check rust-analyzer
+  stat:
     path: "{{ home }}/.local/bin/rust-analyzer"
   register: installed_rust_analyzer
   changed_when: false
@@ -42,22 +42,25 @@
 
 - name: Install rust-analyzer
   become: false
-  shell: "curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o {{ home }}/.local/bin/rust-analyzer && chmod +x {{ home }}/.local/bin/rust-analyzer"
-  when: installed_rust_analyzer.stat.exists == false
+  shell: >-
+    curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o {{ home }}/.local/bin/rust-analyzer
+    chmod +x {{ home }}/.local/bin/rust-analyzer
+  when: not installed_rust_analyzer.stat.exists
 
 - name: Install oh-my-bash
   git:
     repo: "https://github.com/ohmybash/oh-my-bash.git"
     dest: "{{ home }}/.oh-my-bash"
 
-- stat:
+- name: check NERD fonts
+  stat:
     path: "{{ home }}/dotfiles/nerd-fonts"
   register: has_nerd_fonts
 
 - name: clone nerd-fonts
   shell: git clone https://github.com/ryanoasis/nerd-fonts.git
-  when: has_nerd_fonts.stat.exists == false
+  when: not has_nerd_fonts.stat.exists
 
 - name: install nerd-fonts
   shell: nerd-fonts/install.sh
-  when: has_nerd_fonts.stat.exists == false
+  when: not has_nerd_fonts.stat.exists
