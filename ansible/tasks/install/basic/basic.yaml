@@ -41,10 +41,12 @@
     state: "directory"
 
 - name: Install rust-analyzer
-  become: false
-  shell: >-
-    curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux -o {{ home }}/.local/bin/rust-analyzer
-    chmod +x {{ home }}/.local/bin/rust-analyzer
+  block:
+    - name: Download rust-analyzer
+      get_url: url=https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-linux dest={{ home }}/.local/bin/rust-analyzer
+    - name: Install rust-analyzer
+      become: false
+      shell: chmod +x {{ home }}/.local/bin/rust-analyzer
   when: not installed_rust_analyzer.stat.exists
 
 - name: Install oh-my-bash
