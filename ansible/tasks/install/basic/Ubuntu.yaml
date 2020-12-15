@@ -1,8 +1,12 @@
+- name: update apt cache
+  become: true
+  apt:
+    update_cache: true
+
 - name: for add repository
   become: true
   apt:
     name: "{{ item }}"
-    update_cache: true
   loop:
     - apt-transport-https
     - ca-certificates
