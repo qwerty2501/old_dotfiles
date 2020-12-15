@@ -26,15 +26,3 @@
 
 - name: install gcloud sdk
   shell: "{{ home }}/google-cloud-sdk/install.sh --command-completion true --path-update true --quiet"
-
-- block:
-    - name: init gcloud sdk
-      shell: "{{ home }}/google-cloud-sdk/bin/gcloud init"
-    - name: gcloud auth login
-      shell: "{{ home }}/google-cloud-sdk/bin/gcloud auth login"
-    - name: gcloud application default login
-      shell: "{{ home }}/google-cloud-sdk/bin/gcloud auth application-default login"
-    - name: gcloud auth configure-docker
-      shell: "{{ home }}/google-cloud-sdk/bin/gcloud auth configure-docker"
-  tags:
-    - require_google_auth
