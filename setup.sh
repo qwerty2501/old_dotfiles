@@ -15,7 +15,7 @@ do
 			shift 1;;
 
 		--no-interactive)
-			skip_tags="$skip_tags --skip-tags require_google_auth --skip-tags set_locale"
+			skip_tags="$skip_tags --skip-tags require_google_auth --skip-tags environment"
 			shift 1;;
 	esac
 

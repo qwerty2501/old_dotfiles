@@ -8,6 +8,8 @@
       include_tasks: tasks/home.yaml
     - name: Setting environment
       include_tasks: "tasks/environment/{{ ansible_distribution }}.yaml"
+      tags:
+        - environment
     - name: Install tools
       include_tasks: tasks/install/install.yaml
   roles:

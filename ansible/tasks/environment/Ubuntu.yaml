@@ -14,8 +14,6 @@
 - name: Set locale
   become: false
   shell: localectl set-locale LANG=ja_JP.UTF-8 LANGUAGE="ja_JP:ja"
-  tags:
-    - set_locale
 
 - name: set timezone to Asia/Tokyo
   timezone:
@@ -25,8 +23,6 @@
   become: false
   ignore_errors: true
   shell: LANG=C xdg-user-dirs-gtk-update
-  tags:
-    - set_locale
 
 - name: Change Capslock
   become: true
