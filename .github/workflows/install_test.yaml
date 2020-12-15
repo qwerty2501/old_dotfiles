@@ -1,0 +1,13 @@
+name: install_test
+on: [push]
+jobs:
+  install_test:
+    strategy:
+      matrix:
+        os: [ubuntu-20.04]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./setup.sh --no-interactive --force-install
+        env:
+          FORCE_ROOTLESS_INSTALL: 1
