@@ -5,7 +5,6 @@ wd=$(dirname $0)
 cd $wd
 
 
-ask_become_pass="--ask-become-pass"
 skip_tags=''
 force_install="false"
 for OPT in "$@"
@@ -16,8 +15,7 @@ do
 			shift 1;;
 
 		--no-interactive)
-			ask_become_pass=""
-			skip_tags="$skip_tags --skip-tags require_google_auth set_locale"
+			skip_tags="$skip_tags --skip-tags require_google_auth --skip-tags set_locale"
 			shift 1;;
 	esac
 
@@ -27,5 +25,5 @@ sudo apt update
 sudo apt install --yes ansible
 
 ansible-galaxy install robertdebock.cargo
-ansible-playbook ansible/setup.yaml $ask_become_pass $skip_tags --extra-vars="force_install=$force_install"
+ansible-playbook ansible/setup.yaml --ask-become-pass $skip_tags --extra-vars="force_install=$force_install"
 
