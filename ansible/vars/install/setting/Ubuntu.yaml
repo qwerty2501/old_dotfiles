@@ -1,0 +1,34 @@
+apt:
+  install_apps:
+    - uidmap
+    - tar
+    - neovim
+    - pwgen
+    - nodejs
+    - npm
+    - direnv
+    - chromium-browser
+    - python3-pip
+    - apt-transport-https
+    - ca-certificates
+    - gnupg-agent
+    - software-properties-common
+    - tree
+    - ffmpeg
+    - fzf
+    - jq
+    - docker-compose
+    - xvkbd
+    - keepassxc
+    - mysql-client
+    - libxcb-composite0-dev
+
+  add_keys: []
+  add_repositories: []
+pip:
+  install_apps:
+    - msgpack
+    - pynvim
+
+gcloud:
+  download_url: "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-{{ gcloud_sdk_version }}-linux-x86_64.tar.gz?hl=JA"

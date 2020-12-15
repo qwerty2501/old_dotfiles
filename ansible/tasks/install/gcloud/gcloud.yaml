@@ -1,0 +1,40 @@
+- name: check install gcloud
+  shell: command -v gcloud 2>&1
+  register: gcloud_install
+  failed_when: false
+  changed_when: false
+
+- name: install gcloud
+  block:
+    - name: get temp file name
+      shell: mktemp -u
+      register: temp_file_name
+      changed_when: false
+
+    - name: download gcloud
+      get_url: url={{ gcloud.download_url }} dest={{ temp_file_name.stdout }}
+
+    - name: unarchive gcloud
+      unarchive:
+        src: "{{ temp_file_name.stdout }}"
+        dest: "{{ home }}"
+
+    - name: gcloud update
+      shell: "{{ home }}/google-cloud-sdk/bin/gcloud components update --quiet"
+  when:
+    - gcloud_install.stdout == "" or force_install == "true"
+
+- name: install gcloud sdk
+  shell: "{{ home }}/google-cloud-sdk/install.sh --command-completion true --path-update true --quiet"
+
+- block:
+    - name: init gcloud sdk
+      shell: "{{ home }}/google-cloud-sdk/bin/gcloud init"
+    - name: gcloud auth login
+      shell: "{{ home }}/google-cloud-sdk/bin/gcloud auth login"
+    - name: gcloud application default login
+      shell: "{{ home }}/google-cloud-sdk/bin/gcloud auth application-default login"
+    - name: gcloud auth configure-docker
+      shell: "{{ home }}/google-cloud-sdk/bin/gcloud auth configure-docker"
+  tags:
+    - require_google_auth

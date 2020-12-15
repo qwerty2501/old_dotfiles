@@ -1,22 +1,15 @@
 - hosts: localhost
-  vars:
-    xdg_config_home: "$HOME/.config"
-    dotfiles_dir: "$HOME/dotfiles"
-    home: "$HOME"
-
   tasks:
+    - name: load setting
+      include_vars: "vars/install/setting/setting.yaml"
+    - name: load setting
+      include_vars: "vars/install/setting/{{ ansible_distribution }}.yaml"
     - name: Setting Home
       include_tasks: tasks/home.yaml
-    - name: For Ubuntu
-      block:
-        - name: Setting environment Ubuntu
-          include_tasks: tasks/environment/ubuntu.yaml
-        - name: Install Ubuntu tools
-          include_tasks: tasks/install/ubuntu.yaml
-      when:
-        - ansible_distribution == "Ubuntu"
-    - name: Install general tools
-      include_tasks: tasks/install/general.yaml
+    - name: Setting environment
+      include_tasks: "tasks/environment/{{ ansible_distribution }}.yaml"
+    - name: Install tools
+      include_tasks: tasks/install/install.yaml
   roles:
     - role: robertdebock.cargo
       become: true

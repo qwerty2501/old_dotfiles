@@ -1,18 +1,13 @@
+- name: Install tools
+  include_tasks: "{{ ansible_distribution }}.yaml"
+
 - name: Install npm packages
   become: true
   npm:
     name: "{{ item }}"
     global: true
     state: latest
-  with_items:
-    - npm
-    - n
-    - typescript
-    - typescript-language-server
-    - vscode-html-languageserver-bin
-    - vscode-css-languageserver-bin
-    - vscode-json-languageserver
-    - bash-language-server
+  loop: "{{ npm.install_apps }}"
 
 - name: Install rustup stable
   become: false
@@ -27,33 +22,18 @@
   shell: /bin/bash -lc "source {{ home }}/.profile && rustup update"
 - name: Install cargo tools
   become: false
-  shell: /bin/bash -lc "source {{ home }}/.profile && cargo install {{ crates | join(' ') }}"
-  vars:
-    crates:
-      - wasm-pack
-      - wasm-bindgen-cli
-      - wasm-snip
-      - cargo-generate
-      - cargo-atcoder
-      - fd-find
-      - sd
-      - ripgrep
-      - exa
-      - bat
-      - hexyl
-      - procs
-      - gitui
+  shell: /bin/bash -lc "source {{ home }}/.profile && cargo install {{ item }}"
+  loop: "{{ rust.install_crates }}"
 
 - name: Install rustup components
   become: false
-  shell: /bin/bash -lc "source {{ home }}/.profile && rustup component add {{ components | join(' ') }}"
-  vars:
-    components:
-      - rust-src
-      - clippy
+  shell: /bin/bash -lc "source {{ home }}/.profile && rustup component add {{ item }}"
+  loop: "{{ rust.install_rustup_components }}"
+
 - stat:
     path: "{{ home }}/.local/bin/rust-analyzer"
   register: installed_rust_analyzer
+  changed_when: false
 
 - name: Create .local/bin dir if nothing.
   file:

@@ -1,0 +1,4 @@
+- name: Install basic tools
+  include_tasks: basic/basic.yaml
+- name: Install gcloud tools
+  include_tasks: gcloud/gcloud.yaml

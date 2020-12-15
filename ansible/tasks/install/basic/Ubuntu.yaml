@@ -1,0 +1,55 @@
+- name: for add repository
+  become: true
+  apt:
+    name: "{{ item }}"
+    update_cache: true
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - gnupg-agent
+    - software-properties-common
+
+- name: add apt keys
+  become: true
+  apt_key:
+    url: "{{ item }}"
+    state: present
+  loop: "{{ apt.add_keys }}"
+
+- name: add apt repositories
+  become: true
+  apt_repository:
+    update_cache: true
+    repo: "{{ item }}"
+    state: present
+  loop: "{{ apt.add_repositories }}"
+
+- name: update apt cache
+  become: true
+  apt:
+    update_cache: true
+
+- name: install apt apps
+  become: true
+  apt:
+    name: "{{ item }}"
+  loop: "{{ apt.install_apps }}"
+
+- name: Install pip packages.
+  pip:
+    name: "{{ item }}"
+    state: latest
+  loop: "{{ pip.install_apps }}"
+
+- name: rootless dockerをインストール
+  shell:
+    cmd: curl -fsSL https://get.docker.com/rootless | sh
+    warn: false
+
+- name: add rootless docker
+  vars:
+    start: "# BEGIN_DOCKER_CONFIG"
+    end: "# END_DOCKER_CONFIG"
+    script: "export DOCKER_HOST=unix:///run/user/1000/docker.sock"
+  shell: >-
+    cat {{ home }}/.profile | grep -Pzo "{{ start }}[\s\S]*{{ end }}" || bash -c "echo -e \"\n{{ start }}\n{{ script }}\n{{ end }}\n\"" >> {{ home }}/.profile
