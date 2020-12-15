@@ -27,12 +27,6 @@ plugins=(
 source $OSH/oh-my-bash.sh
 eval "$(direnv hook bash)"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
-
 if [ -f "$HOME/.Xmodmap" ]; then xmodmap $HOME/.Xmodmap; fi
 if [ -f "$HOME/.bash_aliases" ]; then
     . "$HOME/.bash_aliases"
@@ -43,3 +37,11 @@ if [ -e "$HOME/.asdf/asdf.sh" ]; then
   source $HOME/.asdf/completions/asdf.bash
 fi
 # END ANSIBLE MANAGED BLOCK: asdf
+
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/qwerty2501/google-cloud-sdk/path.bash.inc' ]; then . '/home/qwerty2501/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/qwerty2501/google-cloud-sdk/completion.bash.inc' ]; then . '/home/qwerty2501/google-cloud-sdk/completion.bash.inc'; fi

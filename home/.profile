@@ -39,10 +39,14 @@ export XDG_VIDEOS_DIR=$HOME/Videos
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export GO111MODULE=on
 # Ubuntu make installation of Ubuntu Make binary symlink
-PATH=$HOME/.anyenv/bin:$HOME/.local/share/umake/bin:/usr/local/go/bin:/usr/local/gradle/bin:$HOME/.pyenv/bin:/usr/local/gatling/bin:$PATH
+PATH=$HOME/bin:$HOME/.anyenv/bin:$HOME/.local/share/umake/bin:/usr/local/go/bin:/usr/local/gradle/bin:$HOME/.pyenv/bin:/usr/local/gatling/bin:$PATH
 eval "$(anyenv init -)"
 
 PATH="$GOROOT/bin:$PATH:$GOPATH/bin"
 export WINEARCH=win32
 
-export PATH="$HOME/.cargo/bin:$PATH"
+
+# BEGIN_DOCKER_CONFIG
+export DOCKER_HOST=unix:///run/user/1000/docker.sock
+# END_DOCKER_CONFIG
+
