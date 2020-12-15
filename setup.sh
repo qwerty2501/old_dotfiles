@@ -24,6 +24,7 @@ done
 sudo apt update
 sudo apt install --yes ansible
 
+ansible-galaxy install markosamuli.asdf
 ansible-galaxy install robertdebock.cargo
 ansible-playbook ansible/setup.yaml --ask-become-pass $skip_tags --extra-vars="force_install=$force_install"
 

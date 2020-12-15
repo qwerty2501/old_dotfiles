@@ -15,3 +15,4 @@
   roles:
     - role: robertdebock.cargo
       become: true
+    - role: markosamuli.asdf
