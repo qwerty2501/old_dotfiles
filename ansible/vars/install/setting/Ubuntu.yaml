@@ -22,9 +22,13 @@ apt:
     - keepassxc
     - mysql-client
     - libxcb-composite0-dev
+    - docker-ce
 
-  add_keys: []
-  add_repositories: []
+  add_keys:
+    - https://download.docker.com/linux/ubuntu/gpg
+
+  add_repositories:
+    - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable"
 pip:
   install_apps:
     - msgpack
