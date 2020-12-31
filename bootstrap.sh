@@ -8,5 +8,5 @@ sudo apt install --yes git
 git clone https://github.com/qwerty2501/dotfiles.git
 cd $HOME/dotfiles
 
-bash $wd/setup.sh $@
+bash ./setup.sh $@
 
