@@ -24,6 +24,7 @@ apt:
     - libxcb-composite0-dev
     - docker-ce
     - libssl-dev
+    - pkg-config
 
   add_keys:
     - https://download.docker.com/linux/ubuntu/gpg
