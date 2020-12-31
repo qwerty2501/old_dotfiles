@@ -1,5 +1,10 @@
 - hosts: localhost
   tasks:
+    - name: get Ubuntu version
+      shell: lsb_release -cs
+      ignore_errors: true
+      register: lsb_release
+      changed_when: false
     - name: load setting
       include_vars: "vars/install/setting/setting.yaml"
     - name: load setting
