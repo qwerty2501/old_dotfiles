@@ -23,6 +23,7 @@ apt:
     - mysql-client
     - libxcb-composite0-dev
     - docker-ce
+    - libssl-dev
 
   add_keys:
     - https://download.docker.com/linux/ubuntu/gpg
