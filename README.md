@@ -1,13 +1,8 @@
 # Installing
 
-If the system has curl.
-
 ```console
-$ curl https://raw.githubusercontent.com/qwerty2501/dotfiles/master/bootstrap.sh | sh
+u=https://raw.githubusercontent.com/qwerty2501/dotfilesp/master/bootstrap.sh&& \
+b=$(mktemp -u)&&((command -v curl&&curl -o $b $u)||(command -v wget&&wget -qO $b $u))&& \
+bash $b
 ```
 
-If the system has wget
-
-```console
-$ wget -q -O - https://raw.githubusercontent.com/qwerty2501/dotfiles/master/bootstrap.sh | sh
-```
