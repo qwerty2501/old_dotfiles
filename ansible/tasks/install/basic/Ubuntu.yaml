@@ -58,3 +58,24 @@
 - name: gpasswd docker
   become: true
   shell: "gpasswd -a {{ username_on_the_host.stdout }} docker"
+
+- name: check terraform-lsp
+  shell: command -v terraform-lsp
+  changed_when: false
+  failed_when: false
+  register: terraform_lsp
+
+- name: install terraform-lsp
+  block:
+    - name: generate tmp name
+      tempfile:
+        state: directory
+      register: terraform_lsp_tmp
+    - name: unarchive
+      unarchive:
+        src: https://github.com/juliosueiras/terraform-lsp/releases/download/v0.0.11-beta2/terraform-lsp_0.0.11-beta2_linux_amd64.tar.gz
+        dest: "{{ terraform_lsp_tmp.path }}"
+        remote_src: true
+    - name: mv
+      shell: mv "{{ terraform_lsp_tmp.path }}/terraform-lsp" "{{ home }}/.local/bin"
+  when: terraform_lsp.stdout == ""
