@@ -73,7 +73,7 @@
       register: terraform_lsp_tmp
     - name: unarchive
       unarchive:
-        src: https://github.com/juliosueiras/terraform-lsp/releases/download/v0.0.11-beta2/terraform-lsp_0.0.11-beta2_linux_amd64.tar.gz
+        src: "{{ tf_src_url }}"
         dest: "{{ terraform_lsp_tmp.path }}"
         remote_src: true
     - name: mv

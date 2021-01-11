@@ -56,7 +56,7 @@
 
 - name: check NERD fonts
   stat:
-    path: "{{ home }}/dotfiles/nerd-fonts"
+    path: "{{ home }}/dotfiles/ansible/nerd-fonts"
   register: has_nerd_fonts
 
 - name: clone nerd-fonts
