@@ -53,6 +53,7 @@ nmap <leader>f  <Plug>(coc-format-selected)
 augroup lspgroup
   autocmd!
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+	autocmd BufWrite * :Format
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
