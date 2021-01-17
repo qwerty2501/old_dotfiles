@@ -20,12 +20,16 @@
     state: present
   loop: "{{ apt.add_keys }}"
 
+- name: add apt keys from keyserver
+  become: true
+  apt_key:
+    keyserver: "{{ item.keyserver }}"
+    id: "{{ item.id }}"
+  loop: "{{ apt.add_keys_from_keyserver}}"
+
 - name: add apt repositories
   become: true
-  apt_repository:
-    update_cache: true
-    repo: "{{ item }}"
-    state: present
+  shell: apt-add-repository "{{ item }}"
   loop: "{{ apt.add_repositories }}"
 
 - name: update apt cache

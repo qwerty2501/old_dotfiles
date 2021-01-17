@@ -25,12 +25,17 @@ apt:
     - docker-ce
     - libssl-dev
     - pkg-config
+    - gh
 
   add_keys:
     - https://download.docker.com/linux/ubuntu/gpg
+  add_keys_from_keyserver:
+    - keyserver: keyserver.ubuntu.com
+      id: C99B11DEB97541F0
 
   add_repositories:
     - "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable"
+    - "https://cli.github.com/packages"
 pip:
   install_apps:
     - msgpack
