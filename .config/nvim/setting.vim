@@ -50,3 +50,10 @@ let g:previm_open_cmd='xdg-open'
 let g:cursorhold_updatetime = 100
 filetype plugin indent on
 syntax enable
+
+if system('uname -a | grep -i microsoft') != ""
+    augroup myYank
+        autocmd!
+        autocmd TextYankPost * :call system('clip.exe', @")
+    augroup END
+endif
