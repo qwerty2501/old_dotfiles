@@ -25,7 +25,7 @@ options     head
       t.Run(tt.name, func(t *testing.T){
           actual,err := ${1:Function}(tt.given)
           assertions := assert.New(t)
-          if tt.expected.err == nil{
+          if errors.Is(tt.expected.err, nil){
             assertions.NoError(err)
           } else{
             assertions.EqualError(err,tt.expected.err.Error())
