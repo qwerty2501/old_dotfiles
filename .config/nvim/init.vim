@@ -8,8 +8,8 @@ set nocompatible
 execute 'source' . s:script_dir . '/dein.vim'
 execute 'source' . s:script_dir . '/setting.vim'
 execute 'source' . s:script_dir . '/fern.vim'
-execute 'source' . s:script_dir . '/lsp.vim'
 execute 'source' . s:script_dir . '/keymap.vim'
+execute 'source' . s:script_dir . '/lsp.vim'
 execute 'source' . s:script_dir . '/denite.vim'
 
 
