@@ -39,7 +39,7 @@ export XDG_VIDEOS_DIR=$HOME/Videos
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export GO111MODULE=on
 # Ubuntu make installation of Ubuntu Make binary symlink
-PATH=$HOME/bin:$HOME/.anyenv/bin:$HOME/.local/share/umake/bin:/usr/local/go/bin:/usr/local/gradle/bin:$HOME/.pyenv/bin:/usr/local/gatling/bin:$PATH
+PATH=$HOME/.cargo/bin:$HOME/bin:$HOME/.anyenv/bin:$HOME/.local/share/umake/bin:/usr/local/go/bin:/usr/local/gradle/bin:$HOME/.pyenv/bin:/usr/local/gatling/bin:$PATH
 export WINEARCH=win32
 
 
