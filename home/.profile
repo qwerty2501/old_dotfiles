@@ -47,3 +47,8 @@ export WINEARCH=win32
 export DOCKER_HOST=unix:///run/user/1000/docker.sock
 # END_DOCKER_CONFIG
 
+
+
+if [ -e "$HOME/.local_profile" ] ; then
+		source $HOME/.local_profile
+fi

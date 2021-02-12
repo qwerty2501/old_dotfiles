@@ -45,3 +45,9 @@ if [ -f '/home/qwerty2501/google-cloud-sdk/path.bash.inc' ]; then . '/home/qwert
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/qwerty2501/google-cloud-sdk/completion.bash.inc' ]; then . '/home/qwerty2501/google-cloud-sdk/completion.bash.inc'; fi
+
+
+
+if [ -e "$HOME/.local_bashrc" ] ; then
+		source $HOME/.local_bashrc
+fi
