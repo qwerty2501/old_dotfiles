@@ -2,25 +2,42 @@
 	"languageserver": {
 		"go": {
 			"command": "gopls",
-			"rootPatterns": ["go.mod"],
+			"rootPatterns": [
+				"go.mod"
+			],
 			"trace.server": "verbose",
-			"filetypes": ["go"]
+			"filetypes": [
+				"go"
+			]
 		},
 		"rust": {
 			"command": "rust-analyzer",
-			"filetypes": ["rust"],
-			"rootPatterns": ["Cargo.toml"]
+			"filetypes": [
+				"rust"
+			],
+			"rootPatterns": [
+				"Cargo.toml"
+			]
 		},
 		"dockerfile": {
 			"command": "docker-langserver",
-			"filetypes": ["dockerfile"],
-			"args": ["--stdio"]
+			"filetypes": [
+				"dockerfile"
+			],
+			"args": [
+				"--stdio"
+			]
 		},
 		"terraform": {
 			"command": "terraform-lsp",
-			"filetypes": ["terraform", "tf"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
 			"initializationOptions": {},
 			"settings": {}
 		}
-	}
+	},
+	"rust-analyzer.cargo.loadOutDirsFromCheck": true,
+	"rust-analyzer.procMacro.enable": true
 }
