@@ -10,6 +10,7 @@ jobs:
       image: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
+      - run: apt install sudo
       - run: ./setup.sh --no-interactive --force-install
         env:
           FORCE_ROOTLESS_INSTALL: 1
