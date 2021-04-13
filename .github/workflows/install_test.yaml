@@ -4,8 +4,10 @@ jobs:
   install_test:
     strategy:
       matrix:
-        os: [ubuntu-20.04]
-    runs-on: ${{ matrix.os }}
+        os: [ubuntu:latest, ubuntu:20.04]
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - run: ./setup.sh --no-interactive --force-install
