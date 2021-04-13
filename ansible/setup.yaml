@@ -19,3 +19,4 @@
       include_tasks: tasks/install/install.yaml
   roles:
     - role: markosamuli.asdf
+      init_shell: true
