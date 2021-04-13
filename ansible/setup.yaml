@@ -18,6 +18,4 @@
     - name: Install tools
       include_tasks: tasks/install/install.yaml
   roles:
-    - role: robertdebock.cargo
-      become: true
     - role: markosamuli.asdf

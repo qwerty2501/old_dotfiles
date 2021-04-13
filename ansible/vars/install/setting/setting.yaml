@@ -29,6 +29,16 @@ rust:
     - clippy
 gcloud_sdk_version: 319.0.0
 
+asdf_plugins:
+  - name: rust
+    versions:
+      - latest
+    global: latest
+  - name: nodejs
+    versions:
+      - latest
+    global: latest
+
 tf_src_url: "https://github.com/juliosueiras/terraform-lsp/releases/download/v0.0.11-beta2/terraform-lsp_0.0.11-beta2_linux_amd64.tar.gz"
 
 xdg_config_home: "$HOME/.config"
