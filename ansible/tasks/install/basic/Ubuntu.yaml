@@ -25,7 +25,7 @@
   apt_key:
     keyserver: "{{ item.keyserver }}"
     id: "{{ item.id }}"
-  loop: "{{ apt.add_keys_from_keyserver}}"
+  loop: "{{ apt.add_keys_from_keyserver }}"
 
 - name: add apt repositories
   become: true
