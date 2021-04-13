@@ -1,39 +1,8 @@
 {
 	"languageserver": {
-		"go": {
-			"command": "gopls",
-			"rootPatterns": [
-				"go.mod"
-			],
-			"trace.server": "verbose",
-			"filetypes": [
-				"go"
-			]
-		},
-		"rust": {
-			"command": "rust-analyzer",
-			"filetypes": [
-				"rust"
-			],
-			"rootPatterns": [
-				"Cargo.toml"
-			]
-		},
-		"dockerfile": {
-			"command": "docker-langserver",
-			"filetypes": [
-				"dockerfile"
-			],
-			"args": [
-				"--stdio"
-			]
-		},
 		"terraform": {
 			"command": "terraform-lsp",
-			"filetypes": [
-				"terraform",
-				"tf"
-			],
+			"filetypes": ["terraform", "tf"],
 			"initializationOptions": {},
 			"settings": {}
 		}

@@ -4,6 +4,35 @@ else
   set signcolumn=yes
 endif
 
+let g:coc_global_extensions = [
+      \  'coc-css',
+      \  'coc-emmet',
+      \  'coc-highlight',
+      \  'coc-html',
+      \  'coc-dictionary',
+      \  'coc-emoji',
+      \  'coc-omni',
+      \  'coc-tag',
+      \  'coc-pairs',
+      \  'coc-java',
+      \  'coc-go',
+      \  'coc-vimlsp',
+      \  'coc-docker',
+      \  'coc-json',
+      \  'coc-pyls',
+      \  'coc-rust-analyzer',
+      \  'coc-snippets',
+      \  'coc-solargraph',
+      \  'coc-yaml',
+      \  'coc-eslint',
+      \  'coc-jest',
+      \  'coc-prettier',
+      \  'coc-tslint',
+      \  'coc-tsserver',
+      \  'coc-sh'
+      \ ]
+
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
