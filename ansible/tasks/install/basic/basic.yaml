@@ -14,6 +14,10 @@
   include_role:
     name: markosamuli.asdf
 
+- name: update asdf
+  become: false
+  shell: /bin/bash -c '. ${ASDF_DATA_DIR:=$HOME/.asdf}/asdf.sh && asdf update'
+
 - name: import OpenPGP keys
   shell: bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
   changed_when: false

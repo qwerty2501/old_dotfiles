@@ -29,6 +29,7 @@ rust:
     - clippy
 gcloud_sdk_version: 319.0.0
 
+asdf_version: v0.8.0
 asdf_plugins:
   - name: rust
     versions:
