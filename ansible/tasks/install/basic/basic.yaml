@@ -10,7 +10,7 @@
   vars:
     asdf_init_shell: true
     asdf_plugins:
-      - nodejs
+      - name: nodejs
   include_role:
     name: markosamuli.asdf
 

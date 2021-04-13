@@ -4,8 +4,6 @@ apt:
     - tar
     - neovim
     - pwgen
-    - nodejs
-    - npm
     - direnv
     - chromium-browser
     - python3-pip
