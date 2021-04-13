@@ -1,3 +1,8 @@
+- name: mkdir .local/bin
+  file:
+    path: "{{ home }}/.local/bin"
+    state: directory
+    mode: 0755
 - name: Install tools
   include_tasks: "{{ ansible_distribution }}.yaml"
 
