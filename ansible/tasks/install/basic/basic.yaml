@@ -28,11 +28,12 @@
   include_role:
     name: markosamuli.asdf
 
+- name: global latest asdf
+  shell: /bin/bash -c '. ${ASDF_DATA_DIR:=$HOME/.asdf}/asdf.sh && asdf global {{ item.name }} $(asdf latest {{ item.name }})'
+  loop: "{{ asdf_plugins }}"
+
 - name: Install npm packages
-  become: true
-  npm:
-    name: "{{ item }}"
-    global: true
+  shell: /bin/bash -c '. ${ASDF_DATA_DIR:=$HOME/.asdf}/asdf.sh && npm i -g {{ item }}'
   loop: "{{ npm.install_apps }}"
 
 - name: Install rustup stable
