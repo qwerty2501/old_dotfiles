@@ -9,6 +9,11 @@
       include_vars: "vars/install/setting/setting.yaml"
     - name: load setting
       include_vars: "vars/install/setting/{{ ansible_distribution }}.yaml"
+    - name: install asdf
+      vars:
+        asdf_init_shell: true
+      include_role:
+        name: markosamuli.asdf
     - name: Setting Home
       include_tasks: tasks/home.yaml
     - name: Setting environment
@@ -17,6 +22,3 @@
         - environment
     - name: Install tools
       include_tasks: tasks/install/install.yaml
-  roles:
-    - role: markosamuli.asdf
-      init_shell: true
