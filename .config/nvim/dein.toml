@@ -112,3 +112,6 @@ repo = 'lambdalisue/fern-git-status.vim'
 
 [[plugins]]
 repo = 'hashivim/vim-terraform'
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'

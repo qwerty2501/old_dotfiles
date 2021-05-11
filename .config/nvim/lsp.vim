@@ -29,7 +29,8 @@ let g:coc_global_extensions = [
       \  'coc-prettier',
       \  'coc-tslint',
       \  'coc-tsserver',
-      \  'coc-sh'
+      \  'coc-sh',
+      \  'coc-graphql'
       \ ]
 
 
