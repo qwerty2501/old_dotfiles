@@ -57,3 +57,5 @@ if system('uname -a | grep -i microsoft') != ""
         autocmd TextYankPost * :call system('clip.exe', @")
     augroup END
 endif
+colorscheme gruvbox
+hi NonText ctermfg=12 guifg=#2D3640

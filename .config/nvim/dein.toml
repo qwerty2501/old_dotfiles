@@ -115,3 +115,6 @@ repo = 'hashivim/vim-terraform'
 
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
