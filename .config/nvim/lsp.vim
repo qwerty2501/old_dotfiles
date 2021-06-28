@@ -30,7 +30,8 @@ let g:coc_global_extensions = [
       \  'coc-tslint',
       \  'coc-tsserver',
       \  'coc-sh',
-      \  'coc-graphql'
+      \  'coc-graphql',
+      \  'coc-toml'
       \ ]
 
 
