@@ -48,10 +48,12 @@ let s:script_dir = expand('<sfile>:p:h')
 let g:neosnippet#snippets_directory=s:script_dir . '/snippets'
 let g:previm_open_cmd='xdg-open'
 let g:cursorhold_updatetime = 100
+let g:executable_xvkbd=executable('xvkbd')
+let g:on_microsoft=system('uname -a | grep -i microsoft') != ""
 filetype plugin indent on
 syntax enable
 
-if system('uname -a | grep -i microsoft') != ""
+if g:on_microsoft
     augroup myYank
         autocmd!
         autocmd TextYankPost * :call system('clip.exe', @")
