@@ -10,5 +10,7 @@
   "rust-analyzer.cargo.loadOutDirsFromCheck": true,
   "rust-analyzer.procMacro.enable": true,
   "rust-analyzer.checkOnSave.command": "clippy",
-  "rust-analyzer.checkOnSave.extraArgs": ["--tests"]
+  "rust-analyzer.checkOnSave.extraArgs": ["--tests"],
+  "go.goplsOptions.gofumpt": true,
+  "go.goplsOptions.memoryMode": "DegradeClosed"
 }
